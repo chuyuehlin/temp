@@ -1,29 +1,15 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
-from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from passlib.hash import sha256_crypt
 from functools import wraps
 import requests
 
 app = Flask(__name__)
 
-# Config MySQL
-app.config['MYSQL_HOST'] = 'us-cdbr-east-02.cleardb.com'
-app.config['MYSQL_USER'] = 'b9b893912cc97e'
-app.config['MYSQL_PASSWORD'] = '5f6c2324'
-app.config['MYSQL_DB'] = 'heroku_d1fcf268b8cf02f'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-# init MYSQL
-mysql = MySQL(app)
-
 
 # Index
-@app.route('/' ,methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        song = request.form['Song']
-        return redirect(url_for('/quicksearch/'+song))
-    return render_template('home.html')
+    return render_template('homepage.html')
 
 
 # About

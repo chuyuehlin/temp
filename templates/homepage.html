@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <!DOCTYPE html>
+    <html lang="zh-Hant-TW">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='homepage.css') }}">
+        <head>
+        <title>stock homepage</title>
+        </head>
+        <body >
+            <div  style="text-align:center" ></div>
+            <form >
+                <label class="label" for="txt-search">Stock Search</label>
+                <input class="input" type="text" id="txt-search" name="search"/>
+            </form>
+
+            <div  style="text-align:center" >
+            <h2>
+                熱門股市
+            </h2>
+            </div>
+        <div class="w3-row ">
+                <div class="card w3-col s4 w3-pale-red">
+                    <h1 id="demo4"></h1>
+                    <div id="chart" class="chartright" ></div>
+                    <p id="demo"></p>
+                    <h2 id="demo1"></h2>
+                    <p id="demo3"></p>
+                    <p id="demo2"></p>                
+                </div>
+                <div class="card w3-col s4 w3-khaki">
+                    <h1 id="dem4"></h1>
+                    <div id="chart2" class="chartright" ></div>
+                    <p id="dem"></p>
+                    <h2 id="dem1"></h2>
+                    <p id="dem3"></p>
+                    <p id="dem2"></p>      
+
+                </div>
+                <div class="card w3-col s4 w3-pale-red">
+                    <h1 id="de4"></h1>
+                    <div id="chart3" class="chartright" ></div>
+                    <p id="de"></p>
+                    <h2 id="de1"></h2>
+                    <p id="de3"></p>
+                    <p id="de2"></p>      
+                </div>
+                <div class="card w3-col s4 w3-khaki">
+                    <h1 id="d4"></h1>
+                    <div id="chart4" class="chartright" ></div>
+                    <p id="d"></p>
+                    <h2 id="d1"></h2>
+                    <p id="d3"></p>
+                    <p id="d2"></p>      
+                </div>
+                <div class="card w3-col s4 w3-pale-red">
+                    <h1 id="e4"></h1>
+                    <div id="chart5" class="chartright" ></div>
+                    <p id="e"></p>
+                    <h2 id="e1"></h2>
+                    <p id="e3"></p>
+                    <p id="e2"></p>
+                </div>
+                <div class="card w3-col s4 w3-khaki">
+                    <h1 id="f4"></h1>
+                    <div id="chart6" class="chartright" ></div>
+                    <p id="f"></p>
+                    <h2 id="f1"></h2>
+                    <p id="f3"></p>
+                    <p id="f2"></p>
+                </div>
+            </div>
+        </body>
+        <script src="https://code.highcharts.com/stock/highstock.js" ></script>
+        <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+        <script type="text/javascript"
+            src="{{ url_for('static', filename='highchart.js') }}"></script>
+        <script type="text/javascript"
+            src="{{ url_for('static', filename='highchart2.js') }}"></script>
+            <script type="text/javascript"
+            src="{{ url_for('static', filename='highchart3.js') }}"></script>
+            <script type="text/javascript"
+            src="{{ url_for('static', filename='highchart4.js') }}"></script>
+            <script type="text/javascript"
+            src="{{ url_for('static', filename='highchart5.js') }}"></script>
+            <script type="text/javascript"
+            src="{{ url_for('static', filename='highchart6.js') }}"></script>
+            <script type="text/javascript"
+            src="{{ url_for('static', filename='stockinfo.js') }}"></script>
+        
+        
+        
+    </html>
+{% endblock %}
