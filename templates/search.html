@@ -1,32 +1,29 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <h1>Search Stock</h1>
-  <form action="" method="POST">
-    <div class="form-group">
-      <label>Search</label>
-      <input type="text" name="Stock" class="form-control" value={{request.form.Stock}}>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  {% if songs %}
-  <table class="table table-striped">
-    <tr>
-      <th>Song</th>
-      <th>Artist</th>
-      <th>Album</th>
-      <th></th>
-      <th></th>
-    </tr>
-    {% for song in songs %}
+  <html lang="zh-Hant-TW">
+    <h1>Search Stock</h1>
+    <form action="" method="POST">
+      <div class="form-group">
+        <label>Search</label>
+        <input type="text" name="Stock" class="form-control" value={{request.form.Stock}}>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% if stockname %}
+    <table class="table table-striped">
       <tr>
-        <td><a href="/quicksearch/{{song.Song}}">{{song.Song}}</a></td>
-        <td><a href="/quicksearch/{{song.Performer}}">{{song.Performer}}</td>
-        <td><a href="/quicksearch/{{song.spotify_track_album}}">{{song.spotify_track_album}}</td>
-        <td><a href="/addtoPlaylist/{{song.SongID}}" class="btn btn-default pull-right">Like</a></td>
+        <th>Song</th>
+        <th>Artist</th>
+        <th>Album</th>
+        <th></th>
+        <th></th>
       </tr>
-    {% endfor %}
-  </table>
-  {% endif %}
+        <tr>
+          <td><a href="/quicksearch/{{stockname}}">{{stockname}}</td>
+          <td><a href="/addtoPlaylist/{{stockname}}" class="btn btn-default pull-right">Like</a></td>
+        </tr>
+    </table>
+    {% endif %}
 {% endblock %}
 <!-- <button type="submit" class="btn btn-primary" onclick="/searchresult/{{request.form.Song}}">Submit</button> -->

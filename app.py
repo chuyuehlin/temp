@@ -2,6 +2,7 @@ from flask import Flask, render_template, flash, redirect, url_for, session, req
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from functools import wraps
 import requests
+import json
 
 app = Flask(__name__)
 
@@ -123,18 +124,22 @@ def quicksearch(song):
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     if request.method == 'POST':
-        song = request.form['Stock']
-        searchjson = {"query": {"term": {"symbolId": {"value": song}}}}
+        stock = request.form['Stock']
+        searchjson = {"query": {"term": {"symbolId": {"value": stock}}}}
         print(searchjson)
-        result = requests.post('http://clip3.cs.nccu.edu.tw:9200/chart/_search', json=searchjson)
-        result = result.json()
+        result = requests.post('http://clip3.cs.nccu.edu.tw:9200/meta/_search', json=searchjson)
+        result = result.json() #result is a dictionary
+
+        print(result)
         if result['hits']['total']['value'] != 0:
-            return render_template('search.html', songs = result)
+            #print(type(result['hits']['hits'][0]['_source']))
+            stockname = result['hits']['hits'][0]['_source']['nameZhTw']
+            print(type(stockname))
+            return render_template('search.html', stockname = stockname)
         else:
             msg = 'NO STOCKS FOUND'
             return render_template('search.html', error = msg)
 
-        print(result.json())
     return render_template('search.html')
 
 @app.route('/playlist')
