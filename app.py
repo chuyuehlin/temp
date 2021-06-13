@@ -121,20 +121,20 @@ def quicksearch(song):
         return render_template('search.html', msg = msg)
 
 @app.route('/search', methods=['GET', 'POST'])
-@is_logged_in
 def search():
     if request.method == 'POST':
-        song = request.form['Song']
-        cur = mysql.connection.cursor()
-        sql='Select * from song_records where Performer like %s union Select distinct * from song_records where Song like %s union Select distinct * from song_records where spotify_track_album like %s'
-        args=[song+'%',song+'%',song+'%']
-        result = cur.execute(sql,args)
-        if result > 0:
-            data = cur.fetchall()
-            return render_template('search.html', songs = data)
+        song = request.form['Stock']
+        searchjson = {"query": {"term": {"symbolId": {"value": song}}}}
+        print(searchjson)
+        result = requests.post('http://clip3.cs.nccu.edu.tw:9200/chart/_search', json=searchjson)
+        result = result.json()
+        if result['hits']['total']['value'] != 0:
+            return render_template('search.html', songs = result)
         else:
-            msg = 'NO SONGS FOUND'
-            return render_template('search.html', msg = msg)
+            msg = 'NO STOCKS FOUND'
+            return render_template('search.html', error = msg)
+
+        print(result.json())
     return render_template('search.html')
 
 @app.route('/playlist')
