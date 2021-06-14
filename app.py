@@ -94,32 +94,11 @@ def logout():
     flash('You are now logged out', 'success')
     return redirect(url_for('login'))
 
-@app.route('/quicksearch/<string:song>', methods=['GET', 'POST'])
+@app.route('/stockpage/<string:stocknum>', methods=['GET'])
 @is_logged_in
-def quicksearch(song):
-    if request.method == 'POST':
-        song = request.form['Song']
-        cur = mysql.connection.cursor()
-        sql='Select * from song_records where Performer like %s union Select distinct * from song_records where Song like %s union Select distinct * from song_records where spotify_track_album like %s'
-        args=[song+'%',song+'%',song+'%']
-        result = cur.execute(sql,args)
-        if result > 0:
-            data = cur.fetchall()
-            return render_template('search.html', songs = data)
-        else:
-            msg = 'NO SONGS FOUND'
-            return render_template('search.html', msg = msg)
-
-    cur = mysql.connection.cursor()
-    sql='Select * from song_records where Performer like %s union Select distinct * from song_records where Song like %s union Select distinct * from song_records where spotify_track_album like %s'
-    args=[song+'%',song+'%',song+'%']
-    result = cur.execute(sql,args)
-    if result > 0:
-        data = cur.fetchall()
-        return render_template('search.html', songs = data)
-    else:
-        msg = 'NO SONGS FOUND'
-        return render_template('search.html', msg = msg)
+def stockpage(stocknum):
+    print("page for ",stocknum)
+    return render_template('stockpage.html')
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
@@ -135,6 +114,7 @@ def search():
             #print(type(result['hits']['hits'][0]['_source']))
             stockname = result['hits']['hits'][0]['_source']['nameZhTw']
             print(type(stockname))
+            #return render_template('search.html', stockname = stockname)
             return render_template('search.html', stockname = stockname)
         else:
             msg = 'NO STOCKS FOUND'
