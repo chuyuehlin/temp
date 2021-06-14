@@ -1,66 +1,22 @@
-Highcharts.stockChart('chart', {
-    chart: {
-        events: {
-            load: function () {
+Highcharts.getJSON('./chartdata/1101', function (data) {
+  // Create the chart
+  Highcharts.stockChart('chart', {
 
-                // set up the updating of the chart each second
-                var series = this.series[0];
-                setInterval(function () {
-                    var x = (new Date()).getTime(), // current time
-                        y = Math.round(Math.random() * 100);
-                        console.log(y)
-                    series.addPoint([x, y], true, true);
-                }, 1000);
-            }
-        }
-    },
-
-    time: {
-        useUTC: false
-    },
 
     rangeSelector: {
-        buttons: [{
-            count: 1,
-            type: 'minute',
-            text: '1M'
-        }, {
-            count: 5,
-            type: 'minute',
-            text: '5M'
-        }, {
-            type: 'all',
-            text: 'All'
-        }],
-        inputEnabled: false,
-        selected: 0
+      selected: 1
     },
 
     title: {
-        text: 'Live random data'
-    },
-
-    exporting: {
-        enabled: false
+      text: '台泥 Stock Price'
     },
 
     series: [{
-        name: 'Random data',
-        data: (function () {
-            // generate an array of random data
-            var data = [],
-                time = (new Date()).getTime(),
-                i;
-
-            for (i = -999; i <= 0; i += 1) {
-                data.push([
-                    time + i * 1000,
-                    Math.round(Math.random() * 100)
-                ]);
-            }
-            //console.log(Math.round(Math.random() * 100))
-            return data;
-        }())
+      name: '台泥',
+      data: data,
+      tooltip: {
+        valueDecimals: 2
+      }
     }]
+  });
 });
-

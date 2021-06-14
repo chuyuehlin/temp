@@ -11,69 +11,80 @@
         <body>
             <form >
                 <label class="label" for="txt-search">Stock Search</label>
-                <input class="input" type="text" id="txt-search" name="search"/>
             </form>
 
             <div  style="text-align:center" >
             <h2>
-                熱門股市
+                今日股市
             </h2>
             </div>
         <div class="w3-row ">
                 <div class="card w3-col s4 w3-pale-red">
-                    <h1 id="demo4"></h1>
-                    <div id="chart" class="chartright" ></div>
-                    <p id="demo"></p>
-                    <h2 id="demo1"></h2>
-                    <p id="demo3"></p>
-                    <p id="demo2"></p>                
+                  <h1>{{stockname[0]}}</h1>
+                  <div id="chart" class="chartright" ></div>
+                  <p></p>
+                  <p >股票代號: {{id[0]}}</p>
+                  <p style="color: red;">今日參考價: {{priceReference[0]}}</p>
+                  <p style="color: red;">漲停價: {{priceHighLimit[0]}}</p>
+                  <p style="color:red;">跌停價: {{priceLowLimit[0]}}</p>
+                  <p>產業別:{{industryZhTw[0]}}</p>                
                 </div>
                 <div class="card w3-col s4 w3-khaki">
-                    <h1 id="dem4"></h1>
-                    <div id="chart2" class="chartright" ></div>
-                    <p id="dem"></p>
-                    <h2 id="dem1"></h2>
-                    <p id="dem3"></p>
-                    <p id="dem2"></p>      
-
+                    <h1>{{stockname[1]}}</h1>
+                  <div id="chart2" class="chartright" ></div>
+                  <p></p>
+                  <p >股票代號: {{id[1]}}</p>
+                  <p style="color: red;">今日參考價: {{priceReference[1]}}</p>
+                  <p style="color: red;">漲停價: {{priceHighLimit[1]}}</p>
+                  <p style="color:red;">跌停價: {{priceLowLimit[1]}}</p>
+                  <p>產業別:{{industryZhTw[1]}}</p>     
                 </div>
                 <div class="card w3-col s4 w3-pale-red">
-                    <h1 id="de4"></h1>
-                    <div id="chart3" class="chartright" ></div>
-                    <p id="de"></p>
-                    <h2 id="de1"></h2>
-                    <p id="de3"></p>
-                    <p id="de2"></p>      
+                    <h1>{{stockname[2]}}</h1>
+                  <div id="chart3" class="chartright" ></div>
+                  <p></p>
+                  <p >股票代號: {{id[2]}}</p>
+                  <p style="color: red;">今日參考價: {{priceReference[2]}}</p>
+                  <p style="color: red;">漲停價: {{priceHighLimit[2]}}</p>
+                  <p style="color:red;">跌停價: {{priceLowLimit[2]}}</p>
+                  <p>產業別:{{industryZhTw[2]}}</p>     
                 </div>
                 <div class="card w3-col s4 w3-khaki">
-                    <h1 id="d4"></h1>
+                    <h1>{{stockname[3]}}</h1>
                     <div id="chart4" class="chartright" ></div>
-                    <p id="d"></p>
-                    <h2 id="d1"></h2>
-                    <p id="d3"></p>
-                    <p id="d2"></p>      
+                    <p></p>
+                    <p >股票代號: {{id[3]}}</p>
+                    <p style="color: red;">今日參考價: {{priceReference[3]}}</p>
+                    <p style="color: red;">漲停價: {{priceHighLimit[3]}}</p>
+                    <p style="color:red;">跌停價: {{priceLowLimit[3]}}</p>
+                    <p>產業別:{{industryZhTw[3]}}</p>      
                 </div>
                 <div class="card w3-col s4 w3-pale-red">
-                    <h1 id="e4"></h1>
+                    <h1>{{stockname[4]}}</h1>
                     <div id="chart5" class="chartright" ></div>
-                    <p id="e"></p>
-                    <h2 id="e1"></h2>
-                    <p id="e3"></p>
-                    <p id="e2"></p>
+                    <p></p>
+                    <p >股票代號: {{id[4]}}</p>
+                    <p style="color: red;">今日參考價: {{priceReference[4]}}</p>
+                    <p style="color: red;">漲停價: {{priceHighLimit[4]}}</p>
+                    <p style="color:red;">跌停價: {{priceLowLimit[4]}}</p>
+                    <p>產業別:{{industryZhTw[4]}}</p>     
                 </div>
                 <div class="card w3-col s4 w3-khaki">
-                    <h1 id="f4"></h1>
+                    <h1>{{stockname[5]}}</h1>
                     <div id="chart6" class="chartright" ></div>
-                    <p id="f"></p>
-                    <h2 id="f1"></h2>
-                    <p id="f3"></p>
-                    <p id="f2"></p>
+                    <p></p>
+                    <p >股票代號: {{id[5]}}</p>
+                    <p style="color: red;">今日參考價: {{priceReference[5]}}</p>
+                    <p style="color: red;">漲停價: {{priceHighLimit[5]}}</p>
+                    <p style="color:red;">跌停價: {{priceLowLimit[5]}}</p>
+                    <p>產業別:{{industryZhTw[5]}}</p>     
                 </div>
             </div>
         </body>
         <script src="https://code.highcharts.com/stock/highstock.js" ></script>
         <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/data.js"></script>
         <script type="text/javascript"
             src="{{ url_for('static', filename='highchart.js') }}"></script>
         <script type="text/javascript"
