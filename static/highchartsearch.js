@@ -1,4 +1,4 @@
-Highcharts.getJSON('./chartdata/' + document.getElementById('Stock').value, function (data) {
+Highcharts.getJSON('./chartdata/' + id, function (data) {
   // Create the chart
   Highcharts.stockChart('chart7', {
 
