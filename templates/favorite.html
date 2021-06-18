@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+    <!DOCTYPE html>
+    <html lang="zh-Hant-TW">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='homepage.css') }}">
+        <head>
+        <title>stock homepage</title>
+        </head>
+        <body >
+        <div class="w3-row ">
+                <div class="card w3-col s12 w3-pale-red">
+                  <h1>{{stockname}}</h1>
+                    <div id="chart7" class="chartright" ></div>
+                    <p></p>
+                    <p >股票代號: {{id}}</p>
+                    <p style="color: red;">今日參考價: {{priceReference}}</p>
+                    <p style="color: red;">漲停價: {{priceHighLimit}}</p>
+                    <p style="color:red;">跌停價: {{priceLowLimit}}</p>
+                    <p>產業別:{{industryZhTw}}</p>
+                </div>
+
+            </div>
+        </body>
+        <script>
+          var stockname = '{{stockname}}'
+          var id = '{{id}}'
+        </script>
+        <script src="https://code.highcharts.com/stock/highstock.js" ></script>
+        <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+        <script type="text/javascript"
+            src="{{ url_for('static', filename='highchartsearch.js') }}"></script>
+
+
+
+
+    </html>
+
+
+
+
+{% endblock %}
+<!-- <button type="submit" class="btn btn-primary" onclick="/searchresult/{{request.form.Song}}">Submit</button> -->
