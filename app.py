@@ -289,7 +289,7 @@ def reccomend():
 
 @app.route("/chartdata/<string:stocknum>", methods=['GET'])  # 函式的裝飾()
 def chartdata(stocknum):
-    print(stocknum)
+    print("hahaha")
     searchjson = {"query": {"term": {"symbolId": {"value": stocknum}}}}
     # print(searchjson)
     chart = requests.post(
@@ -302,7 +302,7 @@ def chartdata(stocknum):
         s = data['_source']['time']
         t = time.mktime(datetime.datetime.strptime(
             s, "%Y-%m-%dT%H:%M:%S.000+08:00").timetuple())*1000 + 28800000000
-        print(t)
+        #print(t)
         price = data['_source']['close']
         # print(price)
         arr = []
@@ -332,6 +332,40 @@ def delete(id):
 def show():
 
         stock = request.args.get('id')
+
+        searchjson = {"query": {"term": {"symbolId": {"value": stock}}}}
+        # print(searchjson)
+        result = requests.post(
+            'http://clip3.cs.nccu.edu.tw:9200/meta/_search', json=searchjson)
+        result = result.json()  # result is a dictionary
+        chart = requests.post(
+            'http://clip3.cs.nccu.edu.tw:9200/chart/_search?size=1000', json=searchjson)
+        chart = chart.json()  # result is a dictionary
+
+        # print(chart)
+        if result['hits']['total']['value'] != 0:
+            # print(result['hits']['hits'][0]['_source'])
+            stockname = result['hits']['hits'][0]['_source']['nameZhTw']
+            id = result['hits']['hits'][0]['_source']['symbolId']
+            priceReference = result['hits']['hits'][0]['_source']['priceReference']
+            priceHighLimit = result['hits']['hits'][0]['_source']['priceHighLimit']
+            priceLowLimit = result['hits']['hits'][0]['_source']['priceLowLimit']
+            industryZhTw = result['hits']['hits'][0]['_source']['industryZhTw']
+            # return render_template('search.html', stockname = stockname)
+            #id = result['hits']['hits'][0]['_source']['1101']
+            return render_template('favorite.html', stockname=stockname, id=id, priceReference=priceReference,
+                                   priceHighLimit=priceHighLimit, priceLowLimit=priceLowLimit, industryZhTw=industryZhTw)
+        else:
+            msg = 'NO STOCKS FOUND'
+            return render_template('search.html', error=msg)
+
+        return render_template('search.html')
+
+
+@app.route('/favorite', methods=['GET', 'POST'])
+def favorite():
+
+        stock = request.form['Stock']
         searchjson = {"query": {"term": {"symbolId": {"value": stock}}}}
         # print(searchjson)
         result = requests.post(
@@ -351,7 +385,7 @@ def show():
             industryZhTw = result['hits']['hits'][0]['_source']['industryZhTw']
             # return render_template('search.html', stockname = stockname)
             #id = result['hits']['hits'][0]['_source']['1101']
-            return render_template('search.html', stockname=stockname, id=id, priceReference=priceReference,
+            return render_template('favorite.html', stockname=stockname, id=id, priceReference=priceReference,
                                    priceHighLimit=priceHighLimit, priceLowLimit=priceLowLimit, industryZhTw=industryZhTw)
         else:
             msg = 'NO STOCKS FOUND'
