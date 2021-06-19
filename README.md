@@ -12,6 +12,7 @@ To use this template, your computer needs:
 ```bash
 python app.py
 ```
+by default this webserver will run on localhost:5000
 
 ## Functions of the app
 
@@ -33,4 +34,3 @@ python app.py
 
 ### Other Specialty Functions
 - Permission system (only people that have logged in can access song search and playlists)
-
